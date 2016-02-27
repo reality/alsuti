@@ -1,0 +1,3 @@
+#!/bin/bash
+echo Uploading $1
+curl --form "fileupload=@$1" --form api_key=fdjiaofjai849309809ahionanlnkjzbahhfhwa http://reality.rehab/al/upload
