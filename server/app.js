@@ -17,6 +17,7 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(__dirname + '/public/favicon.ico'));
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false, limit: '500mb' }));
@@ -24,16 +25,14 @@ app.use(multer());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', routes);
-app.use('/users', users);
-
 // Add some stuff to the req
 app.use(function(req, res, next) {
   req.api_key = 'fdjiaofjai849309809ahionanlnkjzbahhfhwa';
-  req.external_path = 'http://reality.rehab:3062/'
+  req.external_path = 'http://reality.rehab/al/';
   next();
 });
 
+app.use('/', routes);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

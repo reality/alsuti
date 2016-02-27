@@ -11,8 +11,8 @@ router.post('/upload', function(req, res) {
   if(req.body.api_key == req.api_key) {
     fs.readFile(req.files.fileupload.path, function(err, data) {
       var newName = shortid.generate() + '.' + _.last(req.files.fileupload.originalname.split('.'))
-                newPath = __dirname + '/../public/';
-          console.log(newPath);
+          newPath = __dirname + '/../public/';
+
       fs.writeFile(newPath + newName, data, function(err) {
         res.send(JSON.stringify({
           'err': null,
