@@ -1,8 +1,10 @@
-It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself.
+It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation..
 
 If you want to run your own server:
 
-1. Change the req.api_key line and the req.external_path variables in server/app.js to whatever you like, then run bin/www.
+1. Change the req.api_key line and the req.external_path variables in server/app.js to whatever you like.
+2. Run npm install
+3. Run bin/www.
 
 To set up the client: 
 
