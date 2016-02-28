@@ -1,4 +1,4 @@
-It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation (or you can use someone else's server if you like)... You can run it from the command line, use it with scrot, or there is also a handy Firefox addon, which lets you right click an image to rehost it on an alsuti instance.
+It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation (or you can use someone else's server if you like)... You can run it from the command line, use it with scrot, or there is also a handy Firefox addon, which lets you right click an image to rehost it on an alsuti instance. Currently there is no Windows or Chrome client, but I imagine it would probably be pretty easy to create these (can't Chrome run Firefox addons these days?).
 
 ## Configuration
 
