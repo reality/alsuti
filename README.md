@@ -2,7 +2,7 @@ It's a really simple file upload and rehosting tool in the style of puush or tra
 
 ## Configuration
 
-To configure the application, you just need to set two environment variables (both the server and the client use these):
+To configure the application, you need to set two environment variables (both the server and the client use these):
 
 * ALSUTI_API_KEY - The API key necessary to post on the server.
 * ALSUTI_ENDPOINT - The base endpoint for the server, not including the 'upload' path and not including a trailing slash.
