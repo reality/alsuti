@@ -21,7 +21,7 @@ router.post('/upload', function(req, res) {
         });
       });
     } else if(_.has(req.body, 'uri')) {
-      var newName = shortid.generate() + '.' + _.last(req.body.uri..replace(/:.*$/,'').replace(/\?.*$/,'').split('.'))
+      var newName = shortid.generate() + '.' + _.last(req.body.uri.split('.')).replace(/\?.*$/,'').replace(/:.*$/,'')
           newPath = __dirname + '/../public/';
 
       request.get(req.body.uri).pipe(fs.createWriteStream(newPath + newName))
