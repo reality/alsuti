@@ -6,6 +6,8 @@ var multer = require('multer');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var _ = require('underscore')._;
+var process = require('process');
+var sys = require('sys');
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -14,7 +16,7 @@ if(!_.has(process.env, 'ALSUTI_API_KEY')) {
   console.log('You must set the ALSUTI_API_KEY environment variable');
   process.exit(1);
 }
-if(!_.has(process.env, 'ALSUTI_ENDPOINT') {
+if(!_.has(process.env, 'ALSUTI_ENDPOINT')) {
   console.log('You must set the ALSUTI_ENDPOINT environment variable');
   process.exit(1);
 }
