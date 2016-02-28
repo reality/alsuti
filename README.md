@@ -1,4 +1,6 @@
-It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation.. There is also a handy Firefox addon, which lets you right click an image to rehost it on an alsuti instance (just install  alsuti/firefox/alsuti_firefox_addon-0.0.2-an+fx.xpi and set the endpoint/api key in the preferences).
+It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation.. There is also a handy Firefox addon, which lets you right click an image to rehost it on an alsuti instance.
+
+## Configuration
 
 To configure the application, you just need to set two environment variables (both the server and the client use these):
 
@@ -7,11 +9,15 @@ To configure the application, you just need to set two environment variables (bo
 
 If you use bash, you can simply set these in your .bashrc, if you use fish you can do similarly in the fish config file using the 'setenv' command.
 
+## Server
+
 To run the server, 
 
 1. cd server
 1. Run npm install
 2. Run bin/www.
+
+## Command line client
 
 To set up the client:,
 
@@ -26,3 +32,11 @@ function alsuti
 end
 funcsave alsuti
 ```
+
+## Firefox
+
+The firefox plugin allows you to easily rehost images on an alsuti instance and then share a link. This is useful for sharing images which are transient, or behind login-walls to your friends. You can simply right click an image, and then click 'Upload to Alsuti,' and the link will be copied to your clipboard.
+
+![Firefox Addon Screenshot](http://reality.rehab/al/VyFaTRiox.png)
+
+To set this up, you simply need to install the addon in your firefox: firefox/alsuti_firefox_addon-0.0.2-an+fx.xpi and set the api key and endpoint path in the addon settings (note that unlike the ALSUTI_ENDPOINT environment variable, the endpoint for the firefox plugin must be the full upload path e.g. http://reality.rehab/al/upload).
