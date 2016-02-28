@@ -1,4 +1,4 @@
-It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation.. There is also a handy Firefox addon, which lets you right click an image to rehost it on an alsuti instance.
+It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation... You can run it from the command line, use it with scrot, or there is also a handy Firefox addon, which lets you right click an image to rehost it on an alsuti instance.
 
 ## Configuration
 
@@ -22,14 +22,14 @@ To run the server,
 To set up the client:
 
 1. Ensure you have scrot and xclip installed.
-2. Add ```PATH="$PATH:$HOME/alsuti/bin"``` to your ~/.bashrc, adding the relative path to the alsuti folder.
+2. Add ```PATH="$PATH:$HOME/alsuti/bin"``` to your ~/.bashrc, motifying it to include the relative path to the alsuti folder.
 3. Then you can run alsuti whateveryouwanttoupload.gif or scroti (also supports additional scrot flags e.g. scroti -d 5)
 
 Note: if you use fish, you can add the bin folder to your path instead by doing: ```set -gx PATH ~/alsuti/bin $PATH```
 
 ## Firefox
 
-The firefox plugin allows you to easily rehost images on an alsuti instance and then share the link. This is useful for sharing images which are transient, or behind login-walls to your friends. You can simply right click an image, and then click 'Upload to Alsuti,' and the link will be copied to your clipboard.
+The firefox plugin allows you to easily rehost images on an alsuti instance and then share the link. This is useful for sharing images which are transient, or behind login-walls to your friends (or enemies). You can just go ahead and right click an image, and then click 'Upload to Alsuti,' and the link will be copied to your clipboard.
 
 ![Firefox Addon Screenshot](http://reality.rehab/al/VyFaTRiox.png)
 
