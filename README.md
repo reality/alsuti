@@ -21,18 +21,11 @@ To run the server,
 
 To set up the client:
 
-1. Add ```PATH="$PATH:$HOME/alsuti/bin"``` to your ~/.bashrc, adding the relative path to the alsuti folder.
-2. Then you can run alsuti whateveryouwanttoupload.gif or scroti (also supports additional scrot flags e.g. scroti -d 5)
+1. Ensure you have scrot and xclip installed.
+2. Add ```PATH="$PATH:$HOME/alsuti/bin"``` to your ~/.bashrc, adding the relative path to the alsuti folder.
+3. Then you can run alsuti whateveryouwanttoupload.gif or scroti (also supports additional scrot flags e.g. scroti -d 5)
 
 Note: if you use fish, you can add the bin folder to your path instead by doing: ```set -gx PATH ~/alsuti/bin $PATH```
-
-### Screenshots
-
-If you want to automatically upload screenshots, you can install xclip and scrot, then add the following alias in bash (though it is more convenient if you put it in a bash file in your PATH somewhere, since then you can run it from dmenu): 
-
-```alias scroti="scrot $@ -e '~/alsuti/alsuti $f | tail -n 1 | xclip -selection clipboard'"```
-
-
 
 ## Firefox
 
