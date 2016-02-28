@@ -35,7 +35,7 @@ funcsave alsuti
 
 ## Firefox
 
-The firefox plugin allows you to easily rehost images on an alsuti instance and then share a link. This is useful for sharing images which are transient, or behind login-walls to your friends. You can simply right click an image, and then click 'Upload to Alsuti,' and the link will be copied to your clipboard.
+The firefox plugin allows you to easily rehost images on an alsuti instance and then share the link. This is useful for sharing images which are transient, or behind login-walls to your friends. You can simply right click an image, and then click 'Upload to Alsuti,' and the link will be copied to your clipboard.
 
 ![Firefox Addon Screenshot](http://reality.rehab/al/VyFaTRiox.png)
 
