@@ -1,4 +1,4 @@
-It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation..
+It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation.. There is also a handy Firefox addon, which lets you right click an image to rehost it on an alsuti instance (just install  alsuti/firefox/alsuti_firefox_addon-0.0.1-an+fx.xpi and set the endpoint/api key in the preferences).
 
 If you want to run your own server:
 
