@@ -1,0 +1,2 @@
+#!/bin/bash
+scrot $@ -e 'alsuti $f | tail -n 1 | xclip -selection clipboard'

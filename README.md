@@ -19,19 +19,12 @@ To run the server,
 
 ## Command line client
 
-To set up the client:,
+To set up the client:
 
-2. Add ```alias alsuti='~/whereverthisrepois/alsuti'``` to your .bashrc
-3. Then you can run alsuti whateveryouwanttoupload.gif
+1. Add PATH="$PATH:$HOME/alsuti/bin" to your ~/.bashrc, adding the relative path to the alsuti folder.
+2. Then you can run alsuti whateveryouwanttoupload.gif or scroti (also supports additional scrot flags e.g. scroti -d 5)
 
-Note: if you use fish, you can add an alias instead by doing:
-
-```
-function alsuti
-  ~/whereverthisrepois/alsuti $argv[1]
-end
-funcsave alsuti
-```
+Note: if you use fish, you can add the bin folder to your path instead by doing: ```set -gx PATH ~/alsuti/bin $PATH```
 
 ### Screenshots
 
