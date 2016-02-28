@@ -33,6 +33,14 @@ end
 funcsave alsuti
 ```
 
+### Screenshots
+
+If you want to automatically upload screenshots, you can install xclip and scrot, then add the following alias in bash (though it is more convenient if you put it in a bash file in your PATH somewhere, since then you can run it from dmenu): 
+
+```alias scroti="scrot $@ -e '~/alsuti/alsuti $f | tail -n 1 | xclip -selection clipboard'"```
+
+
+
 ## Firefox
 
 The firefox plugin allows you to easily rehost images on an alsuti instance and then share the link. This is useful for sharing images which are transient, or behind login-walls to your friends. You can simply right click an image, and then click 'Upload to Alsuti,' and the link will be copied to your clipboard.
