@@ -27,7 +27,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Add some stuff to the req
 app.use(function(req, res, next) {
-  req.api_key = 'fdjiaofjai849309809ahionanlnkjzbahhfhwa';
+  req.api_key = '';
   req.external_path = 'http://reality.rehab/al/';
   next();
 });
