@@ -1,4 +1,15 @@
 #!/bin/bash
+
+if [ -z "$ALSUTI_API_KEY" ]; then
+  echo "You must set an ALSUTI_API_KEY environment variable."
+  exit 1
+fi
+
+if [ -z "$ALSUTI_ENDPOINT" ]; then
+  echo "You must set an ALSUTI_ENDPOINT environment variable."
+  exit 1
+fi
+
 echo Uploading $1
-curl --form "fileupload=@$1" --form api_key=fdjiaofjai849309809ahionanlnkjzbahhfhwa http://reality.rehab/al/upload
+curl --form "fileupload=@$1" --form api_key=$ALSUTI_API_KEY $ALSUTI_ENDPOINT/upload
 echo ''
