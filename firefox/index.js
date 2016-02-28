@@ -4,7 +4,7 @@ var self = require('sdk/self'),
     clipboard = require('sdk/clipboard'),
     notifications = require('sdk/notifications'),
     prefs = require('sdk/simple-prefs').prefs,
-    _ = require('underscore')._;
+    _ = require('./underscore');
 
 var menuItem = contextMenu.Item({
   'label': 'Upload to Alsuti',
