@@ -22,7 +22,7 @@ To run the server,
 To set up the client:
 
 1. Ensure you have scrot and xclip installed.
-2. Add ```PATH="$PATH:$HOME/alsuti/bin"``` to your ~/.bashrc, motifying it to include the relative path to the alsuti folder.
+2. Add ```PATH="$PATH:$HOME/alsuti/bin"``` to your ~/.bashrc, modifying it to include the relative path to the alsuti folder.
 3. Then you can run alsuti whateveryouwanttoupload.gif or scroti (also supports additional scrot flags e.g. scroti -d 5)
 
 Note: if you use fish, you can add the bin folder to your path instead by doing: ```set -gx PATH ~/alsuti/bin $PATH```
