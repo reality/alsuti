@@ -1,42 +1,29 @@
 package rehab.reality.alsuti;
 
 import android.Manifest;
-import android.app.Activity;
+import android.content.ClipData;
+import android.content.ClipboardManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Window;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.loopj.android.http.*;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
-import java.util.Arrays;
-import java.util.HashMap;
-
-import android.widget.Toast;
-
 
 public class UploadActivity extends AppCompatActivity {
 
@@ -136,11 +123,15 @@ public class UploadActivity extends AppCompatActivity {
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
                 if(responseBody!=null) {
                     try {
-                        Toast.makeText(getBaseContext(), new String(responseBody, "UTF-8"), Toast.LENGTH_LONG).show();
+                        String link = new String(responseBody, "UTF-8");
+                        EditText linkBox = (EditText) findViewById(R.id.editText);
+                        linkBox.setText(link);
 
-                        EditText link = (EditText) findViewById(R.id.editText);
-                        link.setText(new String(responseBody, "UTF-8"));
+                        ClipboardManager clipboard = (ClipboardManager) getSystemService(CLIPBOARD_SERVICE);
+                        ClipData clip = ClipData.newPlainText(link, link);
+                        clipboard.setPrimaryClip(clip);
 
+                        Toast.makeText(getBaseContext(), "Link copied to clipboard", Toast.LENGTH_LONG).show();
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
