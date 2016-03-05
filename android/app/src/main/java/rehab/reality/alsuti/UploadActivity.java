@@ -51,9 +51,6 @@ public class UploadActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        EditText box = (EditText) findViewById(R.id.editText);
-        box.setFocusable(false);
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         String action = intent.getAction();

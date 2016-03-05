@@ -18,5 +18,7 @@
         android:id="@+id/editText"
         android:text="Uploading..."
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:inputType="none"
+        android:textIsSelectable="true" />
 </RelativeLayout>
