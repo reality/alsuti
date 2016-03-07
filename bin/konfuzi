@@ -17,8 +17,8 @@ if(_.include(['jpg','jpeg','gif','png'], ext)) {
 var data = fs.readFileSync(file, encoding);
 
 var encrypted = cjs.AES.encrypt(data, password);
-fs.writeFileSync('/tmp/'+file, encrypted, encoding);
-console.log('/tmp/'+file);
+fs.writeFileSync('/tmp/'+_.last(file.split('/')), encrypted, encoding);
+console.log('/tmp/'+_.last(file.split('/'))); //ugh
 
 /*var ct = fs.readFileSync('test.png.enc', 'utf-8');
 fs.writeFileSync('test.dec.png', 
