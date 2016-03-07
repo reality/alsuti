@@ -10,6 +10,31 @@ if [ -z "$ALSUTI_ENDPOINT" ]; then
   exit 1
 fi
 
-echo Uploading $1
-curl --form "fileupload=@$1" --form api_key=$ALSUTI_API_KEY $ALSUTI_ENDPOINT/upload
+while [[ $# > 1 ]]
+do
+key="$1"
+
+case $key in
+    -p|--password)
+    password="$2"
+    shift # past argument
+    ;;
+	*)
+    ;;
+esac
+shift # past argument or value
+done
+
+file=$1
+
+if [ "$password" ]; then
+  echo "Encrypting $1"
+  efile=`konfuza $file $password`
+  echo Uploading $1
+  curl --form "fileupload=@$efile" --form api_key=$ALSUTI_API_KEY $ALSUTI_ENDPOINT/upload
+else 
+  echo Uploading $1
+  curl --form "fileupload=@$1" --form api_key=$ALSUTI_API_KEY $ALSUTI_ENDPOINT/upload
+fi
+
 echo ''

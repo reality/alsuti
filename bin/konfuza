@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+
+var crypto = require('crypto'),
+    cjs = require('node-cryptojs-aes').CryptoJS, // npm install node-cryptojs-aes
+    fs = require('fs'),
+    _ = require('underscore')._;
+
+var file = process.argv[2],
+    password = process.argv[3],
+    ext = _.last(file.split('.')), // I understand this is dumb, it's to be replaced I promise xxx
+    encoding = 'utf-8';
+
+if(_.include(['jpg','jpeg','gif','png'], ext)) {
+  encoding = 'binary';
+}
+
+var data = fs.readFileSync(file, encoding);
+
+var encrypted = cjs.AES.encrypt(data, password);
+fs.writeFileSync('/tmp/'+file, encrypted, encoding);
+console.log('/tmp/'+file);
+
+/*var ct = fs.readFileSync('test.png.enc', 'utf-8');
+fs.writeFileSync('test.dec.png', 
+    cjs.AES.decrypt(ct, r_pass_base64).toString(cjs.enc.Utf8), 'binary');*/
