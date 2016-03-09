@@ -1,7 +1,7 @@
 {
   "title": "Alsuti Firefox Addon",
   "name": "alsuti",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "An addon to re-upload images to an alsuti instance from your Firefox browser.",
   "main": "index.js",
   "author": "reality (Luke Slater)",
