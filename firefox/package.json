@@ -23,6 +23,8 @@
     "type": "string"
   }],
   "dependencies": {
-    "underscore": "latest"
+    "underscore": "latest",
+    "crypto": "latest",
+    "node-cryptojs-aes": "latest"
   }
 }
