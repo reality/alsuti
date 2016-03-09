@@ -1,0 +1,79 @@
+{
+  "_args": [
+    [
+      "node-cryptojs-aes@latest",
+      "/home/reality/alsuti/firefox"
+    ]
+  ],
+  "_from": "node-cryptojs-aes@latest",
+  "_id": "node-cryptojs-aes@0.4.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/node-cryptojs-aes",
+  "_npmUser": {
+    "email": "chengxianga2008@yahoo.com",
+    "name": "chengxianga2008"
+  },
+  "_npmVersion": "1.4.3",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "node-cryptojs-aes",
+    "raw": "node-cryptojs-aes@latest",
+    "rawSpec": "latest",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/node-cryptojs-aes/-/node-cryptojs-aes-0.4.0.tgz",
+  "_shasum": "64cfba80c1fbc9fac347c8eb2c2c12adbd3a8a07",
+  "_shrinkwrap": null,
+  "_spec": "node-cryptojs-aes@latest",
+  "_where": "/home/reality/alsuti/firefox",
+  "author": {
+    "email": "chengxianga2008@yahoo.com",
+    "name": "Jack Carrick Xiang Cheng",
+    "url": "inovlab.com"
+  },
+  "bugs": {
+    "url": "https://github.com/chengxianga2008/node-cryptojs-aes/issues"
+  },
+  "dependencies": {},
+  "description": "Standalone cryptographic library. A minimalist port of cryptojs javascript library to node.js, that supports AES symmetric key cryptography. node-cryptojs-aes works great on frontend data masking and unmasking.",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "64cfba80c1fbc9fac347c8eb2c2c12adbd3a8a07",
+    "tarball": "http://registry.npmjs.org/node-cryptojs-aes/-/node-cryptojs-aes-0.4.0.tgz"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "homepage": "https://github.com/chengxianga2008/node-cryptojs-aes",
+  "keywords": [
+    "cryptojs",
+    "aes",
+    "data masking",
+    "cryptography",
+    "frontend",
+    "encryption"
+  ],
+  "license": "MIT",
+  "main": "cryptojs.js",
+  "maintainers": [
+    {
+      "email": "chengxianga2008@yahoo.com",
+      "name": "chengxianga2008"
+    }
+  ],
+  "name": "node-cryptojs-aes",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/chengxianga2008/node-cryptojs-aes.git"
+  },
+  "version": "0.4.0"
+}

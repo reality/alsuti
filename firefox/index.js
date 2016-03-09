@@ -7,10 +7,8 @@ var self = require('sdk/self'),
     data = require("sdk/self").data,
     Panel = require("sdk/panel").Panel,
     prefs = require('sdk/simple-prefs').prefs,
-    _ = require('./underscore'),
-    cjs = require('node-cryptojs-aes').CryptoJS;
-
-
+    _ = require('./lib/underscore'),
+    cjs = require('./lib/node-cryptojs-aes').CryptoJS;
 
 var {Cc, components , Cu, Ci} = require("chrome");
 
