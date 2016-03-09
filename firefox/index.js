@@ -115,9 +115,7 @@ function encPostImage(imgSrc) {
 
 function encPostText(text) {
   getPassword(function(password) {
-    console.log('got password ' + password);
     var cipherText = cjs.AES.encrypt(text, password);
-    console.log('got ciphertext ' + cipherText);
 
     var params = {
       'api_key': prefs.api_key,
