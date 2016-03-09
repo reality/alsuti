@@ -4,6 +4,8 @@ var self = require('sdk/self'),
     clipboard = require('sdk/clipboard'),
     notifications = require('sdk/notifications'),
     TextEncoder = require('sdk/io/buffer').TextEncoder,
+    data = require("sdk/self").data,
+    Panel = require("sdk/panel").Panel,
     prefs = require('sdk/simple-prefs').prefs,
     _ = require('./underscore'),
     cjs = require('node-cryptojs-aes').CryptoJS;
@@ -13,7 +15,6 @@ var self = require('sdk/self'),
 var {Cc, components , Cu, Ci} = require("chrome");
 
 Cu.import("resource://gre/modules/Downloads.jsm");
-//Cu.import("resource://gre/modules/osfile.jsm");
 Cu.import("resource://gre/modules/Task.jsm");
 Cu.import("resource://gre/modules/osfile.jsm")
 
@@ -68,71 +69,64 @@ var encryptdMenuItem = contextMenu.Item({
       });
     }
 
-    // First we must download the file
-	Task.spawn(function () {
-      console.log('downlinading file ' + imgSrc + ' to ' + OS.Constants.Path.tmpDir);
-      var tmpPath = OS.Path.join(OS.Constants.Path.tmpDir, _.last(imgSrc.split('/')));
-	  yield Downloads.fetch(imgSrc, tmpPath);
+    var pInput = Panel({
+      'contentURL': data.url('password-entry.html'),
+      'contentScriptFile': data.url('get-password.js'),
+      'width':300,
+      'height':100
+    });
+    pInput.on('show', function() {
+      pInput.port.emit('show'); 
+    });
+    pInput.port.on('text-entered', function(text) {
+      var password = text;
+      pInput.hide();
 
-	  // now i have the file, we have to load it
-      console.log('got file ' + tmpPath);
+      Task.spawn(function () {
+        var fName = _.last(imgSrc.split('/'));
+        var tmpPath = OS.Path.join(OS.Constants.Path.tmpDir, fName);
 
-	  var url = ios.newURI('file://'+tmpPath, null, null);
+        yield Downloads.fetch(imgSrc, tmpPath);
 
-      console.log('created uri 1');
-	  if (!url || !url.schemeIs("file")) throw "Expected a file URL.";
+        var url = ios.newURI('file://'+tmpPath, null, null);
 
-      console.log('created uri 2');
+        if (!url || !url.schemeIs("file")) throw "Expected a file URL.";
 
-	  var imageFile = url.QueryInterface(Ci.nsIFileURL).file;
-	  var istream = Cc["@mozilla.org/network/file-input-stream;1"].
-					createInstance(Ci.nsIFileInputStream);
-	  istream.init(imageFile, -1, -1, false);
+        var imageFile = url.QueryInterface(Ci.nsIFileURL).file;
+        var istream = Cc["@mozilla.org/network/file-input-stream;1"].
+                      createInstance(Ci.nsIFileInputStream);
+        istream.init(imageFile, -1, -1, false);
 
-      console.log('init stream');
+        var bstream = Cc["@mozilla.org/binaryinputstream;1"].
+                      createInstance(Ci.nsIBinaryInputStream);
+        bstream.setInputStream(istream);
 
-	  var bstream = Cc["@mozilla.org/binaryinputstream;1"].
-					createInstance(Ci.nsIBinaryInputStream);
-	  bstream.setInputStream(istream);
+        var bytes = bstream.readBytes(bstream.available());
 
-      console.log('init bitstream');
-      
-      var bytes = bstream.readBytes(bstream.available());
+        var cipherText = cjs.AES.encrypt(bytes, password);
 
-	  var cipherText = cjs.AES.encrypt(bytes, 'password');
+        // It's difficult to upload a file in Firefox so we'll have to send the actual content
+        var params = {
+          'api_key': prefs.api_key,
+          'content': cipherText.toString(),
+          'extension': _.last(fName.split('.')),
+          'encrypted': true
+        };
 
-      // It's difficult to upload a file in Firefox so we'll have to send the actual content
-
-      var encoder = new TextEncoder();                                   // This encoder can be reused for several writes
-      var array = encoder.encode(cipherText);                   // Convert the text to an array
-      var promise = OS.File.writeAtomic(OS.Path.join(OS.Constants.Path.tmpDir, _.last(imgSrc.split('/')) + '.enc'),
-            array, {noOverwrite: true});   
-        promise = promise.then(
-          function onSuccess(a) {
-            console.log('yay');
-          },
-          function onFailure(msg) {
-            console.log(msg);
+        Request({
+          'url': prefs.endpoint,
+          'content': params,
+          'onComplete': function(response) {
+            clipboard.set(response.text);
+            notifications.notify({
+              'title': 'Alsuti',
+              'text': response.text + ' (copied to clipboard)'
+            });
           }
-        );
-		
-	}).then(null, Cu.reportError);
-/*
-    var params = {
-      'api_key': prefs.api_key,
-      'uri': imgSrc
-    };
+        }).post();
+      }).then(null, function(err){ console.log(err); });
+    });
 
-    Request({
-      'url': prefs.endpoint,
-      'content': params,
-      'onComplete': function(response) {
-        clipboard.set(response.text);
-        notifications.notify({
-          'title': 'Alsuti',
-          'text': response.text + ' (copied to clipboard)'
-        });
-      }
-    }).post();*/
+    pInput.show()
   }
 });
