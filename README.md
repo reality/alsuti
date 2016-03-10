@@ -9,14 +9,6 @@ To configure the application, you need to set two environment variables (both th
 
 If you use bash, you can simply set these in your .bashrc, if you use fish you can do similarly in the fish config file using the 'setenv' command.
 
-## Server
-
-To run the server, 
-
-1. cd server
-1. Run npm install
-2. Run bin/www.
-
 ## Command line client
 
 To set up the client:
@@ -26,6 +18,8 @@ To set up the client:
 3. Then you can run alsuti whateveryouwanttoupload.gif or scroti (also supports additional scrot flags e.g. scroti -d 5)
 
 Note: if you use fish, you can add the bin folder to your path instead by doing: ```set -gx PATH ~/alsuti/bin $PATH```
+
+To use the encryption you will need to install nodejs and then npm install node-cryptojs-aes underscore.
 
 ## Firefox
 
