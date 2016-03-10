@@ -32,6 +32,8 @@ To use the screenshot tool, you'll need xclip and scrot installed.
 
 To use the encryption you will need to install nodejs and then npm install node-cryptojs-aes underscore.
 
+To use it, you just run 'alsuti file.txt', you can also pipe stuff into it e.g. 'grep fish -i *.log | alsuti'. To encrypt things, simply run it with the -p flag and give it a password e.g. 'alsuti -p supersecret mythings.txt'
+
 ## Firefox
 
 The firefox plugin allows you to easily rehost images and text on an alsuti instance, encrypted or not, and then share the link. This is useful for sharing images which are transient, or behind login-walls to your friends (or enemies). You can just go ahead and right click an image, and then click 'Upload to Alsuti,' and the link will be copied to your clipboard.
