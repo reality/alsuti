@@ -13,11 +13,13 @@ If you use bash, you can simply set these in your .bashrc, if you use fish you c
 
 To set up the client:
 
-1. Ensure you have scrot and xclip installed.
+1. Clone the repository somewhere.
 2. Add ```PATH="$PATH:$HOME/alsuti/bin"``` to your ~/.bashrc, modifying it to include the relative path to the bin subdirectory in the alsuti folder, which will depend on where you cloned this repository to.
 3. Then you can run alsuti whateveryouwanttoupload.gif or scroti (also supports additional scrot flags e.g. scroti -d 5)
 
 Note: if you use fish, you can add the bin folder to your path instead by doing: ```set -gx PATH ~/alsuti/bin $PATH```
+
+To use the screenshot tool, you'll need xclip and scrot installed.
 
 To use the encryption you will need to install nodejs and then npm install node-cryptojs-aes underscore.
 
