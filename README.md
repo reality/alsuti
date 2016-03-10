@@ -27,7 +27,7 @@ To use the encryption you will need to install nodejs and then npm install node-
 
 ## Firefox
 
-The firefox plugin allows you to easily rehost images on an alsuti instance and then share the link. This is useful for sharing images which are transient, or behind login-walls to your friends (or enemies). You can just go ahead and right click an image, and then click 'Upload to Alsuti,' and the link will be copied to your clipboard.
+The firefox plugin allows you to easily rehost images and text on an alsuti instance, encrypted or not, and then share the link. This is useful for sharing images which are transient, or behind login-walls to your friends (or enemies). You can just go ahead and right click an image, and then click 'Upload to Alsuti,' and the link will be copied to your clipboard.
 
 ![Firefox Addon Screenshot](http://reality.rehab/al/VyFaTRiox.png)
 
