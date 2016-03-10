@@ -38,4 +38,4 @@ The firefox plugin allows you to easily rehost images and text on an alsuti inst
 
 ![Firefox Addon Screenshot](http://reality.rehab/al/VyFaTRiox.png)
 
-To set this up, you simply need to install the addon in your firefox: firefox/alsuti_firefox_addon-0.0.2-an+fx.xpi and set the api key and endpoint path in the addon settings (note that unlike the ALSUTI_ENDPOINT environment variable, the endpoint for the firefox plugin must be the full upload path e.g. http://reality.rehab/al/upload).
+To set this up, you simply need to install [the addon](https://github.com/reality/alsuti/raw/master/firefox/alsuti_firefox_addon-0.0.6-an%2Bfx.xpi) to Firefox, and set the api key and endpoint path in the addon settings (note that unlike the ALSUTI_ENDPOINT environment variable, the endpoint for the firefox plugin must be the full upload path e.g. http://reality.rehab/al/upload).
