@@ -9,7 +9,14 @@ To configure the application, you need to set two environment variables (both th
 * ALSUTI_API_KEY - The API key necessary to post on the server.
 * ALSUTI_ENDPOINT - The base endpoint for the server, not including the 'upload' path and not including a trailing slash.
 
-If you use bash, you can simply set these in your .bashrc, if you use fish you can do similarly in the fish config file using the 'setenv' command.
+If you use bash, you can simply set these in your .bashrc, for example:
+
+```bash
+export ALSUTI_API_KEY=bubbles
+export ALSUTI_ENDPOINT=https://reality.rehab/biscuits
+```
+
+if you use fish you can do similarly in the fish config file using the 'setenv' command.
 
 ## Command line client
 
