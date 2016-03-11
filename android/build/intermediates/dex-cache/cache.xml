@@ -1,2 +1,89 @@
 <?xml version="1.0" encoding="utf-8"?>
-<items version="2" />
+<items version="2" >
+
+    <item
+        jar="/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="8c108c22c99e794eff255bb34d2a461200c4cbb0">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/com.android.support-animated-vector-drawable-23.2.0_aaa81ceeaa6898fa9420985aa74e7f099586d2e1.jar" />
+    </item>
+    <item
+        jar="/home/reality/Android/Sdk/extras/android/m2repository/com/android/support/support-annotations/23.2.0/support-annotations-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="c5bf571bb10462bd90e5419ade67793f71acbc87">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/support-annotations-23.2.0_2848b28001eea3db955da09544876978ed9868a9.jar" />
+    </item>
+    <item
+        jar="/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/jars/libs/internal_impl-23.2.0.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e239441500605809818997dd63b62a947195f8c">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/internal_impl-23.2.0_bbd2e44df63021f412a02a36d993d656c359d5b3.jar" />
+    </item>
+    <item
+        jar="/home/reality/.gradle/caches/modules-2/files-2.1/cz.msebera.android/httpclient/4.3.6/526a9f794eab830eae4f23a62c572878b3f491ab/httpclient-4.3.6.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="526a9f794eab830eae4f23a62c572878b3f491ab">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/httpclient-4.3.6_a887bdbfdec3d2a92af92c3b24cb8dd52c137e0d.jar" />
+    </item>
+    <item
+        jar="/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="292a9fa091757208efa65e77eef63088247e51f3">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-vector-drawable-23.2.0_4014ce7be78bfd8c36a0f170d9d2f29411d731cb.jar" />
+    </item>
+    <item
+        jar="/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-appindexing/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="4477ea44f5ec5ad064022a22691732d7638ff197">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-appindexing-8.1.0_83fe8477e4690f7b43a157968f7a91892efd0109.jar" />
+    </item>
+    <item
+        jar="/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/8.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="d0dda274b703dd9c5bb056867649d22b4171ae7d">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/com.google.android.gms-play-services-basement-8.1.0_1ca9331cb3a58ddbbbb5de4772dd51798be857fb.jar" />
+    </item>
+    <item
+        jar="/home/reality/.gradle/caches/modules-2/files-2.1/com.loopj.android/android-async-http/1.4.9/386a4339ffe52d5d63e80f9bed8d2b1d1a418249/android-async-http-1.4.9.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="386a4339ffe52d5d63e80f9bed8d2b1d1a418249">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/android-async-http-1.4.9_4f37283e649ab0c003f8eb2cab462d52925acbd7.jar" />
+    </item>
+    <item
+        jar="/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/design/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="19026d31f5d3ae868db81319671a642be5fbba08">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/com.android.support-design-23.1.0_c2bea4dc7822ef82dc28028cbf3386aa43dd21ae.jar" />
+    </item>
+    <item
+        jar="/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="3f151e49c316a5ab2c065969a3b3b55ef9b393fc">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/com.android.support-recyclerview-v7-23.1.0_8de57edd2ed0f159b63c94ec1a3041df88adc918.jar" />
+    </item>
+    <item
+        jar="/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="e5f32fa48a3eb2de0c987025c11b6e3864b634d9">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/com.android.support-support-v4-23.2.0_29950658d6875b1a6adfd92ce6287cb6e063c4fc.jar" />
+    </item>
+    <item
+        jar="/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/jars/classes.jar"
+        jumboMode="false"
+        revision="23.0.2"
+        sha1="6e3578f92f7462d1a935a1d36173e3bdd1234976">
+        <dex dex="/home/reality/alsuti/android/app/build/intermediates/pre-dexed/debug/com.android.support-appcompat-v7-23.2.0_1b4bdff2f48ef585c28b438d6cd6c0bf0cf825db.jar" />
+    </item>
+
+</items>
