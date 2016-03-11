@@ -39,9 +39,6 @@ public class UploadActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        System.out.println("trying to do the thing");
-        ProxySelector.setDefault(new SocksProxySelector());
-
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
         String action = intent.getAction();
@@ -112,7 +109,10 @@ public class UploadActivity extends AppCompatActivity {
 
     private void postFile() {
         AsyncHttpClient client = new AsyncHttpClient();
-        client.setProxy("localhost", 8118);
+
+        if(prefs.getBoolean("useTor", false)) {
+            client.setProxy("localhost", 8118);
+        }
 
         RequestParams params = new RequestParams();
 
