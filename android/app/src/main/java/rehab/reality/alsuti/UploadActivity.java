@@ -24,6 +24,7 @@ import com.loopj.android.http.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
+import java.net.ProxySelector;
 
 public class UploadActivity extends AppCompatActivity {
 
@@ -37,6 +38,9 @@ public class UploadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_upload);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        System.out.println("trying to do the thing");
+        ProxySelector.setDefault(new SocksProxySelector());
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -108,6 +112,7 @@ public class UploadActivity extends AppCompatActivity {
 
     private void postFile() {
         AsyncHttpClient client = new AsyncHttpClient();
+        client.setProxy("localhost", 8118);
 
         RequestParams params = new RequestParams();
 
@@ -121,7 +126,7 @@ public class UploadActivity extends AppCompatActivity {
         client.post(prefs.getString("apiEndpoint", "").toString(), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
-                if(responseBody!=null) {
+                if (responseBody != null) {
                     try {
                         String link = new String(responseBody, "UTF-8");
                         EditText linkBox = (EditText) findViewById(R.id.editText);
@@ -140,7 +145,7 @@ public class UploadActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody, Throwable error) {
-                if(responseBody != null) {
+                if (responseBody != null) {
                     try {
                         Toast.makeText(getBaseContext(), new String(responseBody, "UTF-8"), Toast.LENGTH_LONG).show();
                     } catch (UnsupportedEncodingException e) {
