@@ -10,7 +10,7 @@ var file = process.argv[2],
     ext = _.last(file.split('.')), // I understand this is dumb, it's to be replaced I promise xxx
     encoding = 'utf-8';
 
-if(_.include(['jpg','jpeg','gif','png'], ext)) {
+if(_.include(['jpg','jpeg','gif','png','pdf'], ext)) {
   encoding = 'binary';
 }
 
