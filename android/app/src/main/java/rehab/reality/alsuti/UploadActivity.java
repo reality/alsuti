@@ -24,7 +24,6 @@ import com.loopj.android.http.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.UnsupportedEncodingException;
-import java.net.ProxySelector;
 
 public class UploadActivity extends AppCompatActivity {
 
@@ -122,6 +121,10 @@ public class UploadActivity extends AppCompatActivity {
         } catch (FileNotFoundException e) {
             Toast.makeText(this, "Error: Cannot find file", Toast.LENGTH_LONG).show();
         }
+
+        client.setConnectTimeout(60000);
+        client.setResponseTimeout(60000);
+        client.setTimeout(60000);
 
         client.post(prefs.getString("apiEndpoint", "").toString(), params, new AsyncHttpResponseHandler() {
             @Override
