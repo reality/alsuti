@@ -180,12 +180,12 @@
         "source": "/home/reality/alsuti/android/app/build/generated/res/pngs/debug/drawable-mdpi/abc_ic_menu_cut_material.png"
     },
     {
-        "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/drawable-mdpi-v4/abc_switch_track_mtrl_alpha.9.png",
-        "source": "/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable-mdpi-v4/abc_switch_track_mtrl_alpha.9.png"
-    },
-    {
         "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/drawable-mdpi-v4/abc_btn_checkbox_checked_mtrl.png",
         "source": "/home/reality/alsuti/android/app/build/generated/res/pngs/debug/drawable-mdpi/abc_btn_checkbox_checked_mtrl.png"
+    },
+    {
+        "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/drawable-mdpi-v4/abc_switch_track_mtrl_alpha.9.png",
+        "source": "/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/drawable-mdpi-v4/abc_switch_track_mtrl_alpha.9.png"
     },
     {
         "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/drawable-mdpi-v4/abc_scrubber_track_mtrl_alpha.9.png",
