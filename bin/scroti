@@ -1,2 +1,19 @@
 #!/bin/bash
-scrot $@ -e 'alsuti $f | tail -n 1 | xclip -selection clipboard'
+
+key="$1"
+
+case $key in
+    -p|--password)
+    password="$2"
+    shift
+    ;;
+	*)
+    ;;
+esac
+
+if [ "$password" ]; then
+  file=`scrot ${@:2} -e 'echo $f'`
+  alsuti -p $password $file | tail -n 1 | xclip -selection clipboard
+else 
+  scrot $@ -e 'alsuti $f | tail -n 1 | xclip -selection clipboard'
+fi
