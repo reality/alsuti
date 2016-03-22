@@ -1,19 +1,23 @@
 #!/bin/bash
 
-key="$1"
+scrot_options=()
+alsuti_options=()
 
-case $key in
-    -p|--password)
-    password="$2"
-    shift
-    ;;
-	*)
-    ;;
-esac
+while [[ $# > 0 ]]
+do
+  key="$1"
 
-if [ "$password" ]; then
-  file=`scrot ${@:2} -e 'echo $f'`
-  alsuti -p $password $file | tail -n 1 | xclip -selection clipboard
-else 
-  scrot $@ -e 'alsuti $f | tail -n 1 | xclip -selection clipboard'
-fi
+  case $key in
+      -p|--password)
+        alsuti_options+=($key)
+        alsuti_options+=($2)
+        shift # past argument
+      ;;
+      *)
+        scrot_options+=($key)
+  esac
+  shift # past argument or value
+done
+
+file=`scrot ${scrot_options[@]} -e 'echo $f'`
+alsuti ${alsuti_options[@]} $file | tail -n 1 | xclip -selection clipboard
