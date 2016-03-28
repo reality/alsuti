@@ -44,18 +44,14 @@ public class Encrypter {
         jsCode = stringBuilder.toString();
     }
 
-    public void encryptFile(String fileName, final JsCallback superCallback) throws IOException {
+    public void encryptFile(String fileName, String password, final JsCallback superCallback) throws IOException {
         RandomAccessFile f = new RandomAccessFile(fileName, "r");
         byte[] b = new byte[(int)f.length()];
         f.read(b);
-        /*File f = new File(fileName);
-        byte[] content  = FileUtils.readFileToByteArray(f);*/
 
+        String content = "YW5kcm9pZHN1Y2tz" + android.util.Base64.encodeToString(b, android.util.Base64.DEFAULT);
 
-        String content = android.util.Base64.encodeToString(b, android.util.Base64.DEFAULT);
-
-        final String ext = ".jpg";
-        //FilenameUtils.getExtension(fileName);
+        final String ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
         JsEvaluator jsEvaluator = new JsEvaluator(context);
 
@@ -72,10 +68,9 @@ public class Encrypter {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+
                 superCallback.onResult(outputFile.getAbsolutePath());
             }
-        }, "encrypt", content, "password");
-
-
+        }, "encrypt", content, password);
     }
 }

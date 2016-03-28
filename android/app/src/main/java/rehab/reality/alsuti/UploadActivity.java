@@ -22,6 +22,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class UploadActivity extends AppCompatActivity {
     SharedPreferences prefs;
     String waitingFileName;
     Encrypter encrypter;
+    boolean encrypted = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,27 +58,38 @@ public class UploadActivity extends AppCompatActivity {
         String action = intent.getAction();
         prefs = PreferenceManager.getDefaultSharedPreferences(this);
 
-        try {
-            encrypter = new Encrypter(getBaseContext());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
         if (intent.ACTION_SEND.equals(action) && extras.containsKey(Intent.EXTRA_STREAM)) {
             Uri uri = (Uri) extras.getParcelable(Intent.EXTRA_STREAM);
             waitingFileName = parseUriToFilename(uri);
+        }
+    }
+
+    public void onClickBtn(View v) {
+        EditText passwordBox = (EditText) findViewById(R.id.password);
+        EditText progressBox = (EditText) findViewById(R.id.editText);
+        Button uploadButton = (Button) findViewById(R.id.uploadButton);
+
+        String password = passwordBox.getText().toString();
+        passwordBox.setVisibility(View.INVISIBLE);
+        uploadButton.setVisibility(View.INVISIBLE);
+        progressBox.setVisibility(View.VISIBLE);
+
+        if (password != "") {
+            encrypted = true;
+
+            try {
+                encrypter = new Encrypter(getBaseContext());
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
 
             try {
                 final Activity that = this;
-                encrypter.encryptFile(waitingFileName, new JsCallback() {
+                encrypter.encryptFile(waitingFileName, password, new JsCallback() {
                     @Override
                     public void onResult(String s) {
-                        for(File f : getBaseContext().getCacheDir().listFiles()) {
-                            Log.w("alsuti", f.getAbsolutePath());
-                        }
                         waitingFileName = s;
                         Log.w("alsuti new waiting file", s);
-
 
                         Log.w("alsuti", waitingFileName);
                         if (ContextCompat.checkSelfPermission(that,
@@ -97,9 +110,8 @@ public class UploadActivity extends AppCompatActivity {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-
-            // Here, thisActivity is the current activity
-            /*if (ContextCompat.checkSelfPermission(this,
+        } else { //TODO: remove repeated code
+            if (ContextCompat.checkSelfPermission(this,
                     Manifest.permission.READ_EXTERNAL_STORAGE)
                     != PackageManager.PERMISSION_GRANTED) {
 
@@ -109,9 +121,8 @@ public class UploadActivity extends AppCompatActivity {
                 } else {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                 }
-            } else {
-                postFile();
-            }*/
+            }
+
         }
     }
 
@@ -170,6 +181,10 @@ public class UploadActivity extends AppCompatActivity {
             params.put("fileupload", new File(waitingFileName));
         } catch (FileNotFoundException e) {
             Toast.makeText(this, "Error: Cannot find file", Toast.LENGTH_LONG).show();
+        }
+
+        if(encrypted) {
+            params.put("encrypted", true);
         }
 
         client.setConnectTimeout(60000);
