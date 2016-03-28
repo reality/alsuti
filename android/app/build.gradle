@@ -17,11 +17,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    packagingOptions {
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+    }
+
 }
+
+
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
+    compile 'commons-codec:commons-codec:1.10'
     compile 'com.android.support:appcompat-v7:23.2.0'
     compile 'com.android.support:design:23.1.0'
     compile 'com.loopj.android:android-async-http:1.4.9'
