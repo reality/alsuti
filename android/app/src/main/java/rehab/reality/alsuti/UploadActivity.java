@@ -190,9 +190,9 @@ public class UploadActivity extends AppCompatActivity {
             params.put("encrypted", true);
         }
 
-        /*client.setConnectTimeout(60000);
+        client.setConnectTimeout(60000);
         client.setResponseTimeout(60000);
-        client.setTimeout(60000);*/
+        client.setTimeout(60000);
 
         client.post(prefs.getString("apiEndpoint", ""), params, new AsyncHttpResponseHandler() {
             @Override

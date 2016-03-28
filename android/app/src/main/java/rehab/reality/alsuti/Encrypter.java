@@ -41,8 +41,7 @@ public class Encrypter {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(cjsString);
         stringBuilder.append(cliString);
-        Toast.makeText(context, cliString, Toast.LENGTH_LONG).show();
-
+        
         jsCode = stringBuilder.toString();
     }
 
@@ -57,7 +56,6 @@ public class Encrypter {
 
         JsEvaluator jsEvaluator = new JsEvaluator(context);
 
-        Toast.makeText(context, jsCode, Toast.LENGTH_LONG).show();
         try {
             jsEvaluator.callFunction(jsCode, new JsCallback() {
                 @Override
