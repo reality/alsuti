@@ -1,6 +1,7 @@
 package rehab.reality.alsuti;
 
 import android.Manifest;
+import android.app.ActionBar;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
@@ -15,7 +17,9 @@ import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -34,9 +38,15 @@ public class UploadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+        View decorView = getWindow().getDecorView();
+// Hide the status bar.
+        int uiOptions = View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
         setContentView(R.layout.activity_upload);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);*/
 
         Intent intent = getIntent();
         Bundle extras = intent.getExtras();
@@ -115,7 +125,7 @@ public class UploadActivity extends AppCompatActivity {
 
         RequestParams params = new RequestParams();
 
-        params.put("api_key", this.prefs.getString("apiKey", "").toString());
+        params.put("api_key", this.prefs.getString("apiKey", ""));
         try {
             params.put("fileupload", new File(waitingFileName));
         } catch (FileNotFoundException e) {
@@ -126,7 +136,7 @@ public class UploadActivity extends AppCompatActivity {
         client.setResponseTimeout(60000);
         client.setTimeout(60000);
 
-        client.post(prefs.getString("apiEndpoint", "").toString(), params, new AsyncHttpResponseHandler() {
+        client.post(prefs.getString("apiEndpoint", ""), params, new AsyncHttpResponseHandler() {
             @Override
             public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, byte[] responseBody) {
                 if (responseBody != null) {

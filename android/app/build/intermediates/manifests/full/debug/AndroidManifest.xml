@@ -30,7 +30,7 @@
         <activity
             android:name="rehab.reality.alsuti.UploadActivity"
             android:label="@string/title_activity_upload"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" >
 
             <!-- android:theme="@android:style/Theme.Holo.Dialog"> -->
 
