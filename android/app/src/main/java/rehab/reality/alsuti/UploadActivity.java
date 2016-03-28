@@ -83,7 +83,7 @@ public class UploadActivity extends AppCompatActivity {
                 encrypter = new Encrypter(getBaseContext());
             } catch (IOException e) {
                 e.printStackTrace();
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "unable to load things", Toast.LENGTH_LONG).show();
             }
 
             try {

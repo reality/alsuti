@@ -41,6 +41,7 @@ public class Encrypter {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(cjsString);
         stringBuilder.append(cliString);
+        Toast.makeText(context, cliString, Toast.LENGTH_LONG).show();
 
         jsCode = stringBuilder.toString();
     }
@@ -55,7 +56,6 @@ public class Encrypter {
         final String ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
         JsEvaluator jsEvaluator = new JsEvaluator(context);
-        Toast.makeText(context, "loaded js evaluator", Toast.LENGTH_LONG).show();
 
         Toast.makeText(context, jsCode, Toast.LENGTH_LONG).show();
         try {
