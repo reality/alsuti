@@ -116,12 +116,12 @@
         "source": "/home/reality/alsuti/android/app/src/main/res/layout/content_alsuti.xml"
     },
     {
-        "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
-        "source": "/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/layout/abc_select_dialog_material.xml"
-    },
-    {
         "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/layout/notification_template_part_time.xml",
         "source": "/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/layout/notification_template_part_time.xml"
+    },
+    {
+        "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/layout/abc_select_dialog_material.xml",
+        "source": "/home/reality/alsuti/android/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.2.0/res/layout/abc_select_dialog_material.xml"
     },
     {
         "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/layout/abc_action_menu_item_layout.xml",
