@@ -55,11 +55,14 @@ public class Encrypter {
         final String ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
         JsEvaluator jsEvaluator = new JsEvaluator(context);
+        Toast.makeText(context, "loaded js evaluator", Toast.LENGTH_LONG).show();
 
         try {
             jsEvaluator.callFunction(jsCode, new JsCallback() {
                 @Override
                 public void onResult(String cipherText) {
+
+                    Toast.makeText(context, "run encryption " + cipherText, Toast.LENGTH_LONG).show();
                     File outputDir = context.getCacheDir(); // context being the Activity pointer
                     File outputFile = null;
                     try {
@@ -72,6 +75,7 @@ public class Encrypter {
                         Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
                     }
 
+                    Toast.makeText(context, "doing super callback", Toast.LENGTH_LONG).show();
                     superCallback.onResult(outputFile.getAbsolutePath());
                 }
             }, "encrypt", content, password);

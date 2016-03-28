@@ -91,6 +91,8 @@ public class UploadActivity extends AppCompatActivity {
                 encrypter.encryptFile(waitingFileName, password, new JsCallback() {
                     @Override
                     public void onResult(String s) {
+
+                        Toast.makeText(getBaseContext(), "encrypted the file", Toast.LENGTH_LONG).show();
                         waitingFileName = s;
                         if (ContextCompat.checkSelfPermission(that,
                                 Manifest.permission.READ_EXTERNAL_STORAGE)
