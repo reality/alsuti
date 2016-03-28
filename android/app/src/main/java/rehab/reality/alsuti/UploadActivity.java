@@ -74,7 +74,9 @@ public class UploadActivity extends AppCompatActivity {
         uploadButton.setVisibility(View.INVISIBLE);
         progressBox.setVisibility(View.VISIBLE);
 
-        if (password != "") {
+        Log.w("alsuti pass", password.toString());
+
+        if (password.length() != 0) {
             encrypted = true;
 
             try {
@@ -89,9 +91,6 @@ public class UploadActivity extends AppCompatActivity {
                     @Override
                     public void onResult(String s) {
                         waitingFileName = s;
-                        Log.w("alsuti new waiting file", s);
-
-                        Log.w("alsuti", waitingFileName);
                         if (ContextCompat.checkSelfPermission(that,
                                 Manifest.permission.READ_EXTERNAL_STORAGE)
                                 != PackageManager.PERMISSION_GRANTED) {
@@ -121,8 +120,9 @@ public class UploadActivity extends AppCompatActivity {
                 } else {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
                 }
+            } else {
+                postFile();
             }
-
         }
     }
 
@@ -183,13 +183,13 @@ public class UploadActivity extends AppCompatActivity {
             Toast.makeText(this, "Error: Cannot find file", Toast.LENGTH_LONG).show();
         }
 
-        if(encrypted) {
+        if(encrypted == true) {
             params.put("encrypted", true);
         }
 
-        client.setConnectTimeout(60000);
+        /*client.setConnectTimeout(60000);
         client.setResponseTimeout(60000);
-        client.setTimeout(60000);
+        client.setTimeout(60000);*/
 
         client.post(prefs.getString("apiEndpoint", ""), params, new AsyncHttpResponseHandler() {
             @Override
