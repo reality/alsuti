@@ -57,6 +57,7 @@ public class Encrypter {
         JsEvaluator jsEvaluator = new JsEvaluator(context);
         Toast.makeText(context, "loaded js evaluator", Toast.LENGTH_LONG).show();
 
+        Toast.makeText(context, jsCode, Toast.LENGTH_LONG).show();
         try {
             jsEvaluator.callFunction(jsCode, new JsCallback() {
                 @Override
