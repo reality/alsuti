@@ -17,6 +17,7 @@ import java.io.RandomAccessFile;
 import java.util.Scanner;
 
 import org.apache.commons.codec.binary.Base64;
+import org.apache.commons.io.FileUtils;
 
 /**
  * Created by reality on 3/28/16.
@@ -41,14 +42,16 @@ public class Encrypter {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append(cjsString);
         stringBuilder.append(cliString);
-        
+
         jsCode = stringBuilder.toString();
     }
 
     public void encryptFile(String fileName, String password, final JsCallback superCallback) throws IOException {
-        RandomAccessFile f = new RandomAccessFile(fileName, "r");
+        /*RandomAccessFile f = new RandomAccessFile(fileName, "r");
         byte[] b = new byte[(int)f.length()];
-        f.read(b);
+        f.read(b);*/
+
+        byte[] b = FileUtils.readFileToByteArray(new File(fileName));
 
         String content = "YW5kcm9pZHN1Y2tz" + android.util.Base64.encodeToString(b, android.util.Base64.DEFAULT);
 
@@ -61,7 +64,6 @@ public class Encrypter {
                 @Override
                 public void onResult(String cipherText) {
 
-                    Toast.makeText(context, "run encryption " + cipherText, Toast.LENGTH_LONG).show();
                     File outputDir = context.getCacheDir(); // context being the Activity pointer
                     File outputFile = null;
                     try {
