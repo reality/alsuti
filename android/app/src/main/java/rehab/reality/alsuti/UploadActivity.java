@@ -83,6 +83,7 @@ public class UploadActivity extends AppCompatActivity {
                 encrypter = new Encrypter(getBaseContext());
             } catch (IOException e) {
                 e.printStackTrace();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
 
             try {
@@ -108,6 +109,7 @@ public class UploadActivity extends AppCompatActivity {
                 });
             } catch (IOException e) {
                 e.printStackTrace();
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         } else { //TODO: remove repeated code
             if (ContextCompat.checkSelfPermission(this,
@@ -133,7 +135,6 @@ public class UploadActivity extends AppCompatActivity {
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-
                     postFile();
                 } else {
 

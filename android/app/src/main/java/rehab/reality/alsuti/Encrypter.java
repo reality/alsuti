@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.evgenii.jsevaluator.JsEvaluator;
 import com.evgenii.jsevaluator.interfaces.JsCallback;
@@ -55,22 +56,27 @@ public class Encrypter {
 
         JsEvaluator jsEvaluator = new JsEvaluator(context);
 
-        jsEvaluator.callFunction(jsCode, new JsCallback() {
-            @Override
-            public void onResult(String cipherText) {
-                File outputDir = context.getCacheDir(); // context being the Activity pointer
-                File outputFile = null;
-                try {
-                    outputFile = File.createTempFile("alsutiTemp", "." + ext, outputDir);
-                    PrintWriter writer = new PrintWriter(outputFile, "UTF-8");
-                    writer.print(cipherText);
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+        try {
+            jsEvaluator.callFunction(jsCode, new JsCallback() {
+                @Override
+                public void onResult(String cipherText) {
+                    File outputDir = context.getCacheDir(); // context being the Activity pointer
+                    File outputFile = null;
+                    try {
+                        outputFile = File.createTempFile("alsutiTemp", "." + ext, outputDir);
+                        PrintWriter writer = new PrintWriter(outputFile, "UTF-8");
+                        writer.print(cipherText);
+                        writer.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+                    }
 
-                superCallback.onResult(outputFile.getAbsolutePath());
-            }
-        }, "encrypt", content, password);
+                    superCallback.onResult(outputFile.getAbsolutePath());
+                }
+            }, "encrypt", content, password);
+        } catch(Exception e) {
+            Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
     }
 }
