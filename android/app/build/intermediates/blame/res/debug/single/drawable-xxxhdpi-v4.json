@@ -16,12 +16,12 @@
         "source": "/home/reality/alsuti/android/app/build/generated/res/pngs/debug/drawable-xxxhdpi/abc_ic_menu_selectall_material.png"
     },
     {
-        "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4/abc_ic_menu_cut_material.png",
-        "source": "/home/reality/alsuti/android/app/build/generated/res/pngs/debug/drawable-xxxhdpi/abc_ic_menu_cut_material.png"
-    },
-    {
         "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4/abc_ic_menu_paste_material.png",
         "source": "/home/reality/alsuti/android/app/build/generated/res/pngs/debug/drawable-xxxhdpi/abc_ic_menu_paste_material.png"
+    },
+    {
+        "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4/abc_ic_menu_cut_material.png",
+        "source": "/home/reality/alsuti/android/app/build/generated/res/pngs/debug/drawable-xxxhdpi/abc_ic_menu_cut_material.png"
     },
     {
         "merged": "/home/reality/alsuti/android/app/build/intermediates/res/merged/debug/drawable-xxxhdpi-v4/abc_btn_radio_off_mtrl.png",
