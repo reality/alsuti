@@ -24,7 +24,8 @@ import org.apache.commons.io.FileUtils;
  */
 public class Encrypter {
     AssetManager am;
-    String jsCode;
+    String cjsString;
+    String cliString;
     Context context;
 
     public Encrypter(Context context) throws IOException {
@@ -32,25 +33,16 @@ public class Encrypter {
         am = context.getAssets();
 
         Scanner cjsScanner = new Scanner(am.open("cryptojs.js"));
-        String cjsString = cjsScanner.useDelimiter("\\A").next();
+        cjsString = cjsScanner.useDelimiter("\\A").next();
         cjsScanner.close();
 
         Scanner cliScanner = new Scanner(am.open("encrypt_file.js"));
-        String cliString = cliScanner.useDelimiter("\\A").next();
+        cliString = cliScanner.useDelimiter("\\A").next();
         cliScanner.close();
 
-        StringBuilder stringBuilder = new StringBuilder();
-        stringBuilder.append(cjsString);
-        stringBuilder.append(cliString);
-
-        jsCode = stringBuilder.toString();
     }
 
     public void encryptFile(String fileName, String password, final JsCallback superCallback) throws IOException {
-        /*RandomAccessFile f = new RandomAccessFile(fileName, "r");
-        byte[] b = new byte[(int)f.length()];
-        f.read(b);*/
-
         byte[] b = FileUtils.readFileToByteArray(new File(fileName));
 
         String content = "YW5kcm9pZHN1Y2tz" + android.util.Base64.encodeToString(b, android.util.Base64.DEFAULT);
@@ -58,6 +50,17 @@ public class Encrypter {
         final String ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
         JsEvaluator jsEvaluator = new JsEvaluator(context);
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        stringBuilder.append("var plain = \'" + content.replace("\n", "") + "\';");
+        Log.w("text", content.replace("\n", ""));
+        stringBuilder.append(cjsString);
+        stringBuilder.append(cliString);
+
+        String jsCode = stringBuilder.toString();
+
+        Log.w("js", jsCode);
 
         try {
             jsEvaluator.callFunction(jsCode, new JsCallback() {
@@ -79,9 +82,10 @@ public class Encrypter {
                     Toast.makeText(context, "doing super callback", Toast.LENGTH_LONG).show();
                     superCallback.onResult(outputFile.getAbsolutePath());
                 }
-            }, "encrypt", content, password);
+            }, "encrypt", password);
         } catch(Exception e) {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
+        Toast.makeText(context, "are we blocked?", Toast.LENGTH_LONG).show();
     }
 }
