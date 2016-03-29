@@ -65,7 +65,7 @@ public class UploadActivity extends AppCompatActivity {
         }
     }
 
-    public void onClickBtn(View v) {
+    public void onClickBtn(View v) throws IOException, JSException {
         EditText passwordBox = (EditText) findViewById(R.id.password);
         EditText progressBox = (EditText) findViewById(R.id.editText);
         Button uploadButton = (Button) findViewById(R.id.uploadButton);
@@ -80,24 +80,12 @@ public class UploadActivity extends AppCompatActivity {
         if (password.length() != 0) {
             encrypted = true;
             progressBox.setText("Encrypting...");
-
             try {
-                encrypter = new Encrypter(getBaseContext());
+                encrypter = new Encrypter(this, getBaseContext());
+                encrypter.encryptFile(waitingFileName, password);
             } catch (IOException e) {
                 e.printStackTrace();
                 Toast.makeText(this, "unable to load things", Toast.LENGTH_LONG).show();
-            }
-
-            try {
-                final Activity that = this;
-                waitingFileName = encrypter.encryptFile(waitingFileName, password);
-                progressBox.setText("Uploading...");
-                postFile();
-            } catch (IOException e) {
-                e.printStackTrace();
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
-            } catch (JSException e) {
-                e.printStackTrace();
             }
         } else { //TODO: remove repeated code
             if (ContextCompat.checkSelfPermission(this,
@@ -114,6 +102,13 @@ public class UploadActivity extends AppCompatActivity {
                 postFile();
             }
         }
+    }
+
+    public void doneEncryption(String result) {
+        EditText progressBox = (EditText) findViewById(R.id.editText);
+        waitingFileName = result;
+        progressBox.setText("Uploading...");
+        postFile();
     }
 
     @Override

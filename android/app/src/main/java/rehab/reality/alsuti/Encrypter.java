@@ -2,6 +2,8 @@ package rehab.reality.alsuti;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+import android.os.AsyncTask;
+import android.util.Log;
 import android.widget.Toast;
 
 import java.io.File;
@@ -21,9 +23,12 @@ public class Encrypter {
     String cjsString;
     String cliString;
     Context context;
+    UploadActivity uploader;
+    String ext;
 
-    public Encrypter(Context context) throws IOException {
+    public Encrypter(UploadActivity uploader, Context context) throws IOException {
         this.context = context;
+        this.uploader = uploader;
         am = context.getAssets();
 
         Scanner cjsScanner = new Scanner(am.open("cryptojs.js"));
@@ -36,12 +41,10 @@ public class Encrypter {
 
     }
 
-    public String encryptFile(String fileName, String password) throws IOException, JSException {
+    public void encryptFile(String fileName, String password) throws IOException, JSException {
         byte[] b = FileUtils.readFileToByteArray(new File(fileName));
 
         String content = "YW5kcm9pZHN1Y2tz" + android.util.Base64.encodeToString(b, android.util.Base64.DEFAULT);
-
-        final String ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
         StringBuilder stringBuilder = new StringBuilder();
 
@@ -52,12 +55,13 @@ public class Encrypter {
 
         String jsCode = stringBuilder.toString();
 
-        JSContext js = new JSContext();
+        ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
-        js.evaluateScript(jsCode);
+        new RunEncryption(this, jsCode, password).execute();
+        Log.w("progress", "started encryption");
+    }
 
-        String cipherText = js.property("result").toString();
-
+    void done(String cipherText) {
         File outputDir = context.getCacheDir(); // context being the Activity pointer
         File outputFile = null;
         try {
@@ -70,6 +74,46 @@ public class Encrypter {
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
 
-        return outputFile.getAbsolutePath();
+        Log.w("progress", "got the ciphertext and written!");
+
+        uploader.doneEncryption(outputFile.getAbsolutePath());
+    }
+
+    private class RunEncryption extends AsyncTask <String, String, String> {
+        Encrypter encrypter;
+        String password;
+        String jsCode;
+
+        public RunEncryption(Encrypter enc, String jsCode, String password) {
+            encrypter = enc;
+            this.password = password;
+            this.jsCode = jsCode;
+        }
+
+        @Override
+        protected String doInBackground(String... params) {
+            JSContext js = new JSContext();
+            try {
+                js.evaluateScript(jsCode);
+            } catch (JSException e) {
+                e.printStackTrace();
+            }
+            String ret = "";
+            try {
+                ret = js.property("result").toString();
+            } catch (JSException e) {
+                e.printStackTrace();
+            }
+
+            Log.w("progress", "done encryption");
+            return ret;
+        }
+
+        @Override
+        protected void onPostExecute(String result) {
+
+            Log.w("progress", "calling callback");
+            encrypter.done(result);
+        }
     }
 }
