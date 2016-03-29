@@ -2,22 +2,16 @@ package rehab.reality.alsuti;
 
 import android.content.Context;
 import android.content.res.AssetManager;
-import android.provider.MediaStore;
-import android.util.Log;
 import android.widget.Toast;
-
-import com.evgenii.jsevaluator.JsEvaluator;
-import com.evgenii.jsevaluator.interfaces.JsCallback;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.PrintWriter;
-import java.io.RandomAccessFile;
 import java.util.Scanner;
 
-import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.FileUtils;
+import org.liquidplayer.webkit.javascriptcore.JSContext;
+import org.liquidplayer.webkit.javascriptcore.JSException;
 
 /**
  * Created by reality on 3/28/16.
@@ -42,50 +36,40 @@ public class Encrypter {
 
     }
 
-    public void encryptFile(String fileName, String password, final JsCallback superCallback) throws IOException {
+    public String encryptFile(String fileName, String password) throws IOException, JSException {
         byte[] b = FileUtils.readFileToByteArray(new File(fileName));
 
         String content = "YW5kcm9pZHN1Y2tz" + android.util.Base64.encodeToString(b, android.util.Base64.DEFAULT);
 
         final String ext = fileName.substring(fileName.lastIndexOf(".") + 1, fileName.length());
 
-        JsEvaluator jsEvaluator = new JsEvaluator(context);
-
         StringBuilder stringBuilder = new StringBuilder();
 
         stringBuilder.append("var plain = \'" + content.replace("\n", "") + "\';");
-        Log.w("text", content.replace("\n", ""));
+        stringBuilder.append("var password = \'" + password + "\';");
         stringBuilder.append(cjsString);
         stringBuilder.append(cliString);
 
         String jsCode = stringBuilder.toString();
 
-        Log.w("js", jsCode);
+        JSContext js = new JSContext();
 
+        js.evaluateScript(jsCode);
+
+        String cipherText = js.property("result").toString();
+
+        File outputDir = context.getCacheDir(); // context being the Activity pointer
+        File outputFile = null;
         try {
-            jsEvaluator.callFunction(jsCode, new JsCallback() {
-                @Override
-                public void onResult(String cipherText) {
-
-                    File outputDir = context.getCacheDir(); // context being the Activity pointer
-                    File outputFile = null;
-                    try {
-                        outputFile = File.createTempFile("alsutiTemp", "." + ext, outputDir);
-                        PrintWriter writer = new PrintWriter(outputFile, "UTF-8");
-                        writer.print(cipherText);
-                        writer.close();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-
-                    Toast.makeText(context, "doing super callback", Toast.LENGTH_LONG).show();
-                    superCallback.onResult(outputFile.getAbsolutePath());
-                }
-            }, "encrypt", password);
-        } catch(Exception e) {
+            outputFile = File.createTempFile("alsutiTemp", "." + ext, outputDir);
+            PrintWriter writer = new PrintWriter(outputFile, "UTF-8");
+            writer.print(cipherText);
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
             Toast.makeText(context, e.getMessage(), Toast.LENGTH_LONG).show();
         }
-        Toast.makeText(context, "are we blocked?", Toast.LENGTH_LONG).show();
+
+        return outputFile.getAbsolutePath();
     }
 }

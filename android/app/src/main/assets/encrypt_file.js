@@ -1,5 +1,3 @@
 // Relies on globally loaded CryptoJS
 
-function encrypt(password) {
-    return CryptoJS.AES.encrypt(plain, password);
-}
+var result = CryptoJS.AES.encrypt(plain, password);

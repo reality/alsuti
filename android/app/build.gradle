@@ -6,7 +6,7 @@ android {
 
     defaultConfig {
         applicationId "rehab.reality.alsuti"
-        minSdkVersion 15
+        minSdkVersion 19
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -36,5 +36,5 @@ dependencies {
     compile 'com.android.support:design:23.1.0'
     compile 'com.loopj.android:android-async-http:1.4.9'
     compile 'com.google.android.gms:play-services-appindexing:8.1.0'
-    compile(name:'jsevaluator-1.0', ext:'aar')
+    compile(name:'AndroidJSCore-2.0-release', ext:'aar')
 }

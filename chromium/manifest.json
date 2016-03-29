@@ -4,7 +4,8 @@
   "description": "Share your things with your friends!",
   "version": "0.0.1",
   "permissions": [
-    "contextMenus"
+    "contextMenus",
+    "downloads"
   ],
   "background": {
     "scripts": [ "main.js" ]

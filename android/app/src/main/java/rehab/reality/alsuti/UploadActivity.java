@@ -26,8 +26,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.evgenii.jsevaluator.interfaces.JsCallback;
 import com.loopj.android.http.*;
+
+import org.liquidplayer.webkit.javascriptcore.JSException;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -78,6 +79,7 @@ public class UploadActivity extends AppCompatActivity {
 
         if (password.length() != 0) {
             encrypted = true;
+            progressBox.setText("Encrypting...");
 
             try {
                 encrypter = new Encrypter(getBaseContext());
@@ -88,30 +90,14 @@ public class UploadActivity extends AppCompatActivity {
 
             try {
                 final Activity that = this;
-                encrypter.encryptFile(waitingFileName, password, new JsCallback() {
-                    @Override
-                    public void onResult(String s) {
-
-                        Toast.makeText(getBaseContext(), "encrypted the file", Toast.LENGTH_LONG).show();
-                        waitingFileName = s;
-                        if (ContextCompat.checkSelfPermission(that,
-                                Manifest.permission.READ_EXTERNAL_STORAGE)
-                                != PackageManager.PERMISSION_GRANTED) {
-
-                            // Should we show an explanation?
-                            if (ActivityCompat.shouldShowRequestPermissionRationale(that,
-                                    Manifest.permission.READ_EXTERNAL_STORAGE)) {
-                            } else {
-                                ActivityCompat.requestPermissions(that, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
-                            }
-                        } else {
-                            postFile();
-                        }
-                    }
-                });
+                waitingFileName = encrypter.encryptFile(waitingFileName, password);
+                progressBox.setText("Uploading...");
+                postFile();
             } catch (IOException e) {
                 e.printStackTrace();
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+            } catch (JSException e) {
+                e.printStackTrace();
             }
         } else { //TODO: remove repeated code
             if (ContextCompat.checkSelfPermission(this,
