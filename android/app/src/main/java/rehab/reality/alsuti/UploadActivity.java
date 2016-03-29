@@ -81,8 +81,8 @@ public class UploadActivity extends AppCompatActivity {
             encrypted = true;
             progressBox.setText("Encrypting...");
             try {
-                encrypter = new Encrypter(this, getBaseContext());
-                encrypter.encryptFile(waitingFileName, password);
+                encrypter = new Encrypter(this, getBaseContext(), waitingFileName, password);
+                encrypter.runEncryption();
             } catch (IOException e) {
                 e.printStackTrace();
                 Toast.makeText(this, "unable to load things", Toast.LENGTH_LONG).show();
@@ -104,11 +104,16 @@ public class UploadActivity extends AppCompatActivity {
         }
     }
 
-    public void doneEncryption(String result) {
-        EditText progressBox = (EditText) findViewById(R.id.editText);
-        waitingFileName = result;
-        progressBox.setText("Uploading...");
-        postFile();
+    public void doneEncryption(final String result) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                EditText progressBox = (EditText) findViewById(R.id.editText);
+                waitingFileName = result;
+                progressBox.setText("Uploading...");
+                postFile();
+            }
+        });
     }
 
     @Override
