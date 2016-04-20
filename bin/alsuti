@@ -36,6 +36,12 @@ if [ -z "$file" ]; then
   echo
 fi
 
+is_image=$(file -i $file | grep -ic image)
+if [ $is_image -eq 1 ]; then
+  echo "Stripping EXIF data"
+  convert "$file" -strip "$file"
+fi
+
 if [ "$password" ]; then
   echo "Encrypting $file"
   efile=`konfuzi $file $password`

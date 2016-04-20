@@ -16,7 +16,7 @@ export ALSUTI_API_KEY=bubbles
 export ALSUTI_ENDPOINT=https://reality.rehab/biscuits
 ```
 
-if you use fish you can do similarly in the fish config file using the 'setenv' command.
+If you use fish you can do similarly in the fish config file using the 'setenv' command.
 
 ## Command line client
 
@@ -31,6 +31,8 @@ Note: if you use fish, you can add the bin folder to your path instead by doing:
 To use the screenshot tool, you'll need xclip and scrot installed.
 
 To use the encryption you will need to install nodejs and then npm install node-cryptojs-aes underscore.
+
+For image EXIF scrubbing, you'll need to install imagemagick.
 
 To use it, you just run 'alsuti file.txt', you can also pipe stuff into it e.g. 'grep fish -i *.log | alsuti'. To encrypt things, simply run it with the -p flag and give it a password e.g. 'alsuti -p supersecret mythings.txt'. For an automatically generated password, use -e or --encrypted - this means your password won't be in your shell history! Also, you won't have to think of a password. You can use it without a filename argument, to get a stdin prompt and enter input manually.
 
