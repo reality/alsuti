@@ -10,10 +10,9 @@ if [ -z "$ALSUTI_ENDPOINT" ]; then
   exit 1
 fi
 
-while [[ $# > 1 ]]
+while [[ $# > 0 ]]
 do
 key="$1"
-
 case $key in
     -p|--password)
       password="$2"
@@ -24,18 +23,17 @@ case $key in
       echo "Generated password: $password" 
       ;;
 	*)
+      file="$key"
       ;;
 esac
 shift # past argument or value
 done
 
-if [ -z "$1" ] || [ "$1" == "-e" ]; then
+if [ -z "$file" ]; then
   file="/tmp/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 5 | head -n 1).txt"
   echo "Enter input to upload (press ctrl+d when you're done):"
   echo "$(cat)" > $file
   echo
-else 
-  file=$1
 fi
 
 if [ "$password" ]; then
