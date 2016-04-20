@@ -1,4 +1,4 @@
-It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation (or you can use someone else's server if you like)... It also supports client-side encryption, which you can decrypt in the web browser. You can run it from the command line, use it with scrot, or there is also a handy Firefox addon, which lets you right click an image to rehost it on an alsuti instance. Currently there is no Windows or Chrome client, but I imagine it would probably be pretty easy to create these (can't Chrome run Firefox addons these days?).
+It's a really simple file upload and rehosting tool in the style of puush or transfer.sh, but you can just run it yourself without overcomplicating the whole situation. It also supports client-side encryption, so you can decrypt files in the web browser. You can run it from the command line, use it with scrot, or there is also a handy Firefox addon, which lets you right click an image or text to rehost it on alsuti. Currently there is no Windows or Chrome client, but I imagine it would probably be pretty easy to create these (can't Chrome run Firefox addons these days?).
 
 If you want to use it, you'll have to find an instance. I host one on [alsuti.xyz](https://alsuti.xyz) or you can run your own with [alsuti-server](https://github.com/reality/alsuti-server).
 
@@ -32,7 +32,7 @@ To use the screenshot tool, you'll need xclip and scrot installed.
 
 To use the encryption you will need to install nodejs and then npm install node-cryptojs-aes underscore.
 
-To use it, you just run 'alsuti file.txt', you can also pipe stuff into it e.g. 'grep fish -i *.log | alsuti'. To encrypt things, simply run it with the -p flag and give it a password e.g. 'alsuti -p supersecret mythings.txt'. For an automatically generated password, use -e or --encrypted - this means your password won't be in your shell history! Also, you won't have to think of a password.
+To use it, you just run 'alsuti file.txt', you can also pipe stuff into it e.g. 'grep fish -i *.log | alsuti'. To encrypt things, simply run it with the -p flag and give it a password e.g. 'alsuti -p supersecret mythings.txt'. For an automatically generated password, use -e or --encrypted - this means your password won't be in your shell history! Also, you won't have to think of a password. You can use it without a filename argument, to get a stdin prompt and enter input manually.
 
 ## Firefox
 
@@ -41,3 +41,7 @@ The firefox plugin allows you to easily rehost images and text on an alsuti inst
 ![Firefox Addon Screenshot](http://reality.rehab/al/VyFaTRiox.png)
 
 To set this up, you simply need to install [the addon](https://github.com/reality/alsuti/raw/master/firefox/alsuti_firefox_addon-0.0.6-an%2Bfx.xpi) to Firefox, and set the api key and endpoint path in the addon settings (note that unlike the ALSUTI_ENDPOINT environment variable, the endpoint for the firefox plugin must be the full upload path e.g. http://reality.rehab/al/upload).
+
+## Android
+
+You can install the Android application with [this APK](https://github.com/reality/alsuti/blob/master/android/app/build/outputs/apk/app-debug.apk). Note that it's not signed, so you'll need to enable the ability to install software from unknown sources to use it.
