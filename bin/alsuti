@@ -23,7 +23,7 @@ case $key in
       echo "Generated password: $password" 
       ;;
 	*)
-      file="$key"
+      file="$@"
       ;;
 esac
 shift # past argument or value
