@@ -19,7 +19,7 @@ case $key in
       shift # past argument
       ;;
     -e|--encrypt)
-      password=$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
+      password=$(cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
       echo "Generated password: $password" 
       ;;
 	*)
@@ -30,7 +30,7 @@ shift # past argument or value
 done
 
 if [ -z "$file" ]; then
-  file="/tmp/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 5 | head -n 1).txt"
+  file="/tmp/$(cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 5 | head -n 1).txt"
   echo "Enter input to upload (press ctrl+d when you're done):"
   echo "$(cat)" > $file
   echo
