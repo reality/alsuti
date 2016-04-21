@@ -44,7 +44,7 @@ fi
 
 if [ "$password" ]; then
   echo "Encrypting $file"
-  efile=`konfuzi $file $password`
+  efile=`konfuzi "$file" $password`
   echo Uploading $file
   out=`curl --form "fileupload=@$efile" --form api_key=$ALSUTI_API_KEY --form encrypted=true $ALSUTI_ENDPOINT/upload`
 else 
