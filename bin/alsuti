@@ -52,6 +52,8 @@ else
   out=`curl --form "fileupload=@$file" --form api_key=$ALSUTI_API_KEY $ALSUTI_ENDPOINT/upload`
 fi
 
-echo $out | xclip -selection clipboard
+if hash xclip 2>/dev/null; then
+  echo $out | xclip -selection clipboard
+fi
 echo $out
 echo ''
