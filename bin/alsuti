@@ -29,6 +29,8 @@ esac
 shift # past argument or value
 done
 
+echo "note: path of file is $file"
+
 if [ -z "$file" ]; then
   file="/tmp/$(cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 5 | head -n 1).txt"
   echo "Enter input to upload (press ctrl+d when you're done):"
