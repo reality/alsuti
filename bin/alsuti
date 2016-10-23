@@ -12,44 +12,47 @@ fi
 
 while [[ $# > 0 ]]
 do
-key="$1"
-case $key in
+  key="$1"
+  case $key in
+    -s|--silent)
+      silent=1
+      ;;
     -p|--password)
       password="$2"
       shift # past argument
       ;;
     -e|--encrypt)
-      password=$(cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 16 | head -n 1)
-      echo "Generated password: $password" 
+      password=$(LC_CTYPE=C tr -cd A-Za-z0-9 </dev/urandom |head -c 16)
+      if [ -z "$silent" ]; then echo "Generated password: $password"; fi
       ;;
-	*)
+    *)
       file="$@"
       ;;
-esac
-shift # past argument or value
+  esac
+  shift # past argument or value
 done
 
 if [ -z "$file" ]; then
-  file="/tmp/$(cat /dev/urandom | env LC_CTYPE=C tr -dc 'a-zA-Z0-9' | fold -w 5 | head -n 1).txt"
-  echo "Enter input to upload (press ctrl+d when you're done):"
+	file="/tmp/$(LC_CTYPE=C tr -cd A-Za-z0-9 </dev/urandom |head -c 5).txt"
+  if [ -z "$silent" ]; then echo "Enter input to upload (press ctrl+d when you're done):"; fi
   echo "$(cat)" > $file
   echo
 fi
 
 is_image=$(file -i $file | grep -ic image)
 if [ $is_image -eq 1 ]; then
-  echo "Stripping EXIF data"
+  if [ -z "$silent" ]; then echo "Stripping EXIF data"; fi
   convert "$file" -strip "$file"
 fi
 
 if [ "$password" ]; then
-  echo "Encrypting $file"
+  if [ -z "$silent" ]; then echo "Encrypting $file"; fi
   efile=`konfuzi "$file" $password`
-  echo Uploading $file
-  out=`curl --form "fileupload=@$efile" --form api_key=$ALSUTI_API_KEY --form encrypted=true $ALSUTI_ENDPOINT/upload`#$password
-else 
-  echo Uploading $1
-  out=`curl --form "fileupload=@$file" --form api_key=$ALSUTI_API_KEY $ALSUTI_ENDPOINT/upload`
+  if [ -z "$silent" ]; then echo "Uploading $file"; fi
+  out=`curl -s -k --form "fileupload=@$efile" --form api_key=$ALSUTI_API_KEY --form encrypted=true $ALSUTI_ENDPOINT/upload`#$password
+else
+  if [ -z "$silent" ]; then echo "Uploading $1"; fi
+  out=`curl -s -k --form "fileupload=@$file" --form api_key=$ALSUTI_API_KEY $ALSUTI_ENDPOINT/upload`
 fi
 
 if hash xclip 2>/dev/null; then
